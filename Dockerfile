@@ -48,6 +48,7 @@ RUN apk --no-cache add msttcorefonts-installer fontconfig && \
 # Comando do prince para fazer a conversao do html para pdf
 # ENTRYPOINT [ "/tmp/prince-12.5.1-alpine3.10-x86_64/lib/prince/bin/prince" ]
 
+
 COPY ./app/app.js ${FUNCTION_DIR}
 COPY ./app/package.json ${FUNCTION_DIR}
 
