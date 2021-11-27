@@ -1,3 +1,5 @@
+"use strict";
+
 exports.handler = async (event) => {
     console.log("oi");
     // TODO implement
