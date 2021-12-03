@@ -52,6 +52,8 @@ RUN apk --no-cache add msttcorefonts-installer fontconfig && \
 COPY ./app/app.js ${FUNCTION_DIR}
 COPY ./app/package.json ${FUNCTION_DIR}
 
+RUN npm install bluebird
+
 # Install lib amazon para events para lambda
 RUN npm install aws-lambda-ric
 

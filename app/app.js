@@ -1,8 +1,9 @@
 "use strict";
 var execFile = require('child_process').execFile;
+var Promise = require('bluebird');
+
 
 exports.handler = async (event, context, done) => {
-    
 
     if (!event || !event.body) { return done(new Error("No data.")); }
 
@@ -21,34 +22,43 @@ exports.handler = async (event, context, done) => {
     }
 
     let html = await tinyMultipartParser(body);
+    console.log(html);
 
     let opts = { timeout: 10 * 1000, maxbuffer: 10 * 1024 * 1024, encoding: "buffer" };
-    
-    console.log("Iniciando execução do prince");
 
-    await makeFIle(html, opts);
+    try {
+        let pdfBase64 = await execPromise(html, opts, done);
 
-    console.log("Finalizado execução do prince");
-};
-
-async function makeFIle(html, opts){
-    let child = execFile("./prince-12.5.1-alpine3.10-x86_64/lib/prince/bin/prince", ["-", "-o", "-"], opts, function (err, stdout, stderr) {
-        if (err) { return done(err); }
-        if (err === null && (m = stderr.toString().match(/prince:\s+error:\s+([^\n]+)/))) {
-            return done(new Error(m[1]));
-        }
-        console.log(stdout.toString("base64"))
-        done(null, {
+        let retornoFinal = {
             "isBase64Encoded": true,
             "statusCode": 200,
-            "headers": { "Content-Type": "application/pdf" },
-            "body": stdout.toString("base64")
-        });
-    });
-    child.stdin.write(html);
-    child.stdin.end();
-}
+            "headers": { "Content-Type": "application/pdf;charset=UTF-8" },
+            "body": pdfBase64
+        }
+        return retornoFinal
+    } catch (e) {
 
+        console.log("Error =>  " + e.message);
+    }
+};
+
+function execPromise(html, opts, done) {
+
+    console.log("Iniciando execução do prince");
+
+    return new Promise(function (resolve, reject) {
+        let child = execFile("./prince-12.5.1-alpine3.10-x86_64/lib/prince/bin/prince", ["-", "-o", "-"], opts, function (err, stdout, stderr) {
+        //teste local
+        // let child = execFile("prince", ["-", "-o", "-"], opts, function (err, stdout, stderr) {
+            if (err) { return done(err); }
+            
+            resolve(stdout.toString("base64"));
+
+        });
+        child.stdin.write(html);
+        child.stdin.end();
+    });
+}
 
 async function tinyMultipartParser(data) {
     // assume first line is boundary
