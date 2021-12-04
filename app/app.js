@@ -4,7 +4,7 @@ var Promise = require('bluebird');
 
 
 exports.handler = async (event, context, done) => {
-
+    
     if (!event || !event.body) { return done(new Error("No data.")); }
 
     if (!event || !event.body) {
@@ -18,11 +18,11 @@ exports.handler = async (event, context, done) => {
     let body = event.body;
 
     if (event.isBase64Encoded) {
-        body = Buffer.from(body, "base64").toString("ascii");
+        body = Buffer.from(body, "base64").toString()//Default utf-8
+        // toString("ascii");
     }
 
     let html = await tinyMultipartParser(body);
-    console.log(html);
 
     let opts = { timeout: 10 * 1000, maxbuffer: 10 * 1024 * 1024, encoding: "buffer" };
 
@@ -79,3 +79,5 @@ async function tinyMultipartParser(data) {
     })
     return output.join("\n");
 }
+
+

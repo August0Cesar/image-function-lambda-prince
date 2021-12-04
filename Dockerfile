@@ -34,7 +34,6 @@ RUN apk add --no-cache \
   automake \
   libtool \
   libcurl \
-  python3 \
   libexecinfo-dev \
   python3
 
