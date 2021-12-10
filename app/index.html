@@ -1,0 +1,1179 @@
+<head>
+	<title>Avaliação Checklist</title>
+	<meta property="og:site_name" content="SULTS">
+	<meta property="og:url" content="https://r.sults.com.br">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="https://www.sults.com.br/assets/open_graph_logo.png">
+	<meta name="twitter:image" content="https://www.sults.com.br/assets/open_graph_logo.png">
+	<meta property="og:title" content="Avaliação Checklist">
+	<meta property="og:description" content="Relatório de avaliação Checklist ">
+	
+	
+	<script>
+		var contextPath = '';
+	</script>
+
+	<link rel="stylesheet" href="https://r.sults.com.br:443/public/font-awesome-4.7.0/css/font-awesome.css" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="/public/pdf/A4page.css">
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="/module/checklist/report/execucao/report-checklist-execucao.js?v=3"></script><script type="text/javascript" src="/javax.faces.resource/pdf/download-file-4.21.js.xhtml?ln=js"></script>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+ 
+		
+	<style>
+		.dash-left{
+			display: flex;justify-content: center;align-items: stretch;
+		}
+		.dash-right{
+			display: flex; 
+		}
+		.overview-box-count, .overview-box-name{
+			text-align: center;
+		}
+		@media only screen and (min-width: 1025px) {
+			.dash-left{
+				padding-left: 0 !important;
+			}
+			.dash-right{
+				padding-right: 0 !important;
+			}
+			.overview-box-count, .overview-box-name{
+				text-align: left;
+			}	
+		}
+	</style>
+ 
+			
+	<style>
+		.text-ellipsis{
+			white-space: nowrap;overflow: hidden;text-overflow: ellipsis;
+		}
+		
+		body{
+			
+		}
+		 
+		
+		th, td {
+			border: 1px solid silver;
+			padding: 10px;
+			text-align: left;
+		}
+		
+		.sessao-table>tbody>tr>td {
+			border: none !important;
+		}
+		
+		@page {
+			size: A4 !important;
+			margin: 0mm !important;
+			padding: 0mm !important;
+			
+			/*prince-image-resolution: 300dpi;  or 96dpi */
+			
+		}
+		
+		@page {
+			prince-pdf-print-scaling: auto !important;
+			prince-shrink-to-fit: auto !important;
+			page-break-inside: avoid !important;
+		}
+		
+		@media print {
+			#noprint {
+				display: none !important;
+			}
+		}
+		
+		.column-pergunta {
+			
+		}
+		
+		.column-resposta {
+			width: 100px;
+		}
+		
+		.column-pontuacao {
+			width: 120px;
+		}
+		
+		@page { 
+			@top-left { 
+				content:"TOP SECRET";
+				color: red;
+			}
+		
+			@bottom-right {
+				content: counter(page);
+				font-style: italic;
+			}
+		}
+	
+	
+		@page { 
+			size: A4;
+			prince-shrink-to-fit: auto; 
+		}
+	
+	
+		/*
+		Se for Mobile
+		*/
+		@media only screen and (max-width: 600px) {
+			.display-tablet {
+				display: none !important;
+			}
+			.display-tablet-desktop {
+				display: none !important;
+			}
+		}
+	
+		/*
+			Se for Desktop
+		*/
+		@media only screen and (min-width: 1025px) {
+			.display-tablet {
+				display: none !important;
+			}
+			.display-mobile-tablet {
+				display: none !important;
+			}
+		}
+	
+		/*
+		Se for Tablet ou Desktop
+		*/
+		@media only screen and (min-width: 601px) {
+			.display-mobile {
+				display: none !important;
+			}
+		}
+	
+		/*
+		Se for Mobile ou Tablet
+		*/
+		@media only screen and (max-width: 1024px) {
+			.display-desktop {
+				display: none !important;
+			}
+		}
+	
+	</style>
+	
+	<style>
+		.s-toggle-group{
+			display: flex;align-items: center;margin-right:8px;color: white;
+		}
+		.s-toggle-group-btn{
+			display: flex;align-items: center;
+			background-color: #99b0c3;padding: 0 8px;height: 24px;
+			box-sizing: border-box;
+			cursor: pointer;
+		}
+		.s-toggle-group-btn:first-child{
+			border-radius: 2px 0px 0px 2px;
+		}
+		.s-toggle-group-btn:last-child{
+			border-radius: 0 2px 2px 0;
+		}
+		.s-toggle-group-btn:not(:first-child){
+			border-left: 1px solid #899eaf;/*#257ec5*/
+		}
+		.s-toggle-group-btn-selected{
+			background-color: #2f8ee5;
+		}
+		.s-toggle-group-btn-selected-turquoise{
+			background-color: #00acac;
+		}
+	</style>
+</head>
+
+
+
+<body>
+	
+	<div style="position: fixed;width: 100vw;height: 100vh;background: #525659;z-index: -1;top:0px; padding: 0px !important;margin: 0px !important"></div>
+	
+	<div id="noprint" style="margin: 0 auto; width: 870px; text-align: right; margin-top: 25px; margin-bottom: 25px; background: white; padding: 15px; border-radius: 5px;display: flex;">
+		
+		
+		<div class="display-desktop" style="display: flex;align-items: center;width: 100%;">
+			<a href="#" onclick="window.close();" style="background-color: #00acac; color:white; border-radius: 3px;padding:5px 20px;margin-right: auto;height: 38px;">
+				<i class="fa fa-chevron-left"></i>
+				Voltar
+			</a><div style="">
+				<div style="font-size: 12px;text-align: left;line-height: 14px;">
+					Visualização de Imagens
+				</div>
+				
+				<div class="s-toggle-group">
+				
+					<div class="s-toggle-group-btn img-large-btn" onclick="imgLayout.showLarge();"><img id="j_idt8" src="/javax.faces.resource/png/view-agenda-outline.png.xhtml?ln=img" alt="" style="width: 18px;margin-right:4px;">
+						Grande
+					</div>
+					<div class="s-toggle-group-btn s-toggle-group-btn-selected img-medium-btn" onclick="imgLayout.showMedium();"><img id="j_idt10" src="/javax.faces.resource/png/view-grid-outline.png.xhtml?ln=img" alt="" style="width: 18px;margin-right:4px;">
+						Miniatura
+					</div>
+					<div class="s-toggle-group-btn img-end-btn" onclick="imgLayout.showEnd();"><img id="j_idt12" src="/javax.faces.resource/png/format-vertical-align-bottom.png.xhtml?ln=img" alt="" style="width: 18px;margin-right:4px;">
+						No final
+					</div>
+					<div class="s-toggle-group-btn img-hide-btn" onclick="imgLayout.hide();"><img id="j_idt14" src="/javax.faces.resource/png/image-remove.png.xhtml?ln=img" alt="" style="width: 18px;margin-right:4px;">
+						Não Mostrar
+					</div>
+				</div></div>
+			
+			<div style="margin-left: auto;"></div>
+			
+			<a class="btn btn-primary display-desktop" href="#" onclick="generatePdf()" style="margin-left:auto;margin-right:10px;height: 38px;">
+				<i class="fa fa-print"></i> Imprimir 
+			</a> 
+				
+			<a class="btn btn-danger display-desktop" href="#" onclick="generatePdf()" style="height: 38px;"> 
+				<i class="fa fa-file-pdf-o"></i> Gerar
+				PDF
+			</a>
+		</div>
+		
+		
+		<div class="display-mobile-tablet" style="width: 100%">
+		
+			<div style="display: flex;align-items: center;">
+				<a href="#" onclick="window.close();" class="display-mobile-tablet" style="font-size: 50px;background-color: #00acac; color:white; border-radius: 10px;padding:5px 20px;margin-right: auto;">
+					<i class="fa fa-chevron-left"></i>
+					Voltar
+				</a>
+				
+				<div style="margin-left: auto;"></div>
+				
+				<a href="whatsapp://send?text=Resultado+da+Avalia%C3%A7%C3%A3o+Checklist%3A+https%3A%2F%2Fr.sults.com.br%2Fchk%2Fa%3Ft%3DRX9UfXldamworSis9bmkclct63BXsiqdlhKt5UUiUvzCUjHZ4PajDg%253D%253D" class="display-mobile-tablet unselectable" style="background-color:#57ba63;color:white;width:80px;height: 80px;font-size: 65px;display: flex;align-items: center;justify-content: center;border-radius:5px;       outline: none;text-decoration: none;">
+					
+					<div class="fa fa-whatsapp"></div>
+				</a>
+				
+				<div class="display-mobile-tablet" style="height: 32px;width: 40px;"></div>
+				
+				<div class="display-mobile-tablet" style="background-color:#007bff;color:white;width:80px;height: 80px;font-size: 60px;display: flex;align-items: center;justify-content: center;border-radius:5px;" onclick="generatePdf()">
+					<div class="fa fa-download"></div>
+				</div>
+			</div><div style="margin: 4mm 0;">
+				<div style="font-size: 42px;text-align: left;">
+					Visualização de Imagens
+				</div>
+				
+				<div class="s-toggle-group" style="font-size: 44px;">
+					<div class="s-toggle-group-btn img-large-btn" style="height: auto;flex:1;" onclick="imgLayout.showLarge();"><img id="j_idt19" src="/javax.faces.resource/png/view-agenda-outline.png.xhtml?ln=img" alt="" style="width: 48px;margin-right:4px;">
+						Grande
+					</div>
+					<div class="s-toggle-group-btn s-toggle-group-btn-selected img-medium-btn" style="height: auto;flex:1;" onclick="imgLayout.showMedium();"><img id="j_idt21" src="/javax.faces.resource/png/view-grid-outline.png.xhtml?ln=img" alt="" style="width: 48px;margin-right:4px;">
+						Miniatura
+					</div>
+				</div>
+				<div class="s-toggle-group" style="font-size: 44px;">
+					<div class="s-toggle-group-btn img-end-btn" style="height: auto;flex:1;white-space: nowrap;" onclick="imgLayout.showEnd();"><img id="j_idt23" src="/javax.faces.resource/png/format-vertical-align-bottom.png.xhtml?ln=img" alt="" style="width: 48px;margin-right:4px;">
+						No final
+					</div>
+					<div class="s-toggle-group-btn img-hide-btn" style="height: auto;flex:1;white-space: nowrap;" onclick="imgLayout.hide();"><img id="j_idt25" src="/javax.faces.resource/png/image-remove.png.xhtml?ln=img" alt="" style="width: 48px;margin-right:4px;">
+						Não Mostrar
+					</div>
+				</div></div>
+			
+		</div>
+		
+		
+		
+		
+		
+		
+	</div>
+	<page size="A4">
+	
+	
+	<style>
+		.questao-anexo-imagem-list-medium{
+			/*
+			display: flex;
+			flex-wrap: wrap;
+		    /*justify-content: center;*/
+		}
+		.questao-anexo-imagem-wrapper{
+			padding: 4mm;
+			display: block;
+		    margin-left: auto;
+    		margin-right: auto;
+		}
+		
+		
+		.questao-anexo-imagem-wrapper{
+			max-width: 130mm; max-height: 130mm; 
+			height:100%;
+			object-fit: contain;
+		}
+		
+		.questao-anexo-imagem-list .questao-anexo-imagem-wrapper{
+			width: 100%;
+			max-width:190mm;
+		}
+		
+		.questao-anexo-imagem-list-medium .questao-anexo-imagem-wrapper{
+			width:45%;
+		    box-sizing: border-box;
+		    margin: 0 !important;
+		    display: inline;
+		}
+		
+		
+	</style>
+	
+	<div style="background:white"> 
+	<div style="background: #13c4ad; height: 80px; text-align: center; padding: 25px;">
+		<img alt="" src="https://www.sults.com.br/public/logo-white.png" height="34">
+	</div>
+		
+		 <div style="padding: 30px 50px 10px 50px;">
+			 <div style="border-bottom: 1px solid silver;padding-bottom: 15px;display: flex;flex:1;align-items: center; ">
+					 <div style="width: 100%;text-align: center;justify-content: center">
+					 	<img src="https://sults.sults.com.br/javax.faces.resource/img/clientes/treinamento/login-logo.png.xhtml" style="max-height: 32mm;">
+					 </div>
+					 
+			</div>
+		</div>
+		
+		<div style="display: flex;margin: 10px 50px 0 50px;margin-top:30px">
+			<div class="text-ellipsis" style="width:50%;text-align: center;justify-content: center;margin-right: 6px">
+			
+				<table>
+					<tbody><tr>
+						<td style="font-weight: bold;font-size: 14px;padding: 0px;padding-left:5px;background: #efefef;">Questionário</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px;height: 55px"><span style="max-width: 300px" class="text-ellipsis">Inspeção de Lojas - Qualidade</span></td>
+					</tr>
+				</tbody></table>
+			</div> 
+			<div style="width:50%; background-color:#337ab7">
+				<div style="text-align: center;color:white; ">
+					Nota Final 
+					
+					 - 536 de 660
+					
+				</div>
+				<div style="color: white;font-size: 24pt;text-align: center;line-height: 24pt;">
+					81.21%
+				</div>
+			</div>
+		</div>			
+	 
+	 <div style="margin: 10px 50px 0 50px;justify-content: space-between;display: flex;flex: 1">
+		  		
+		<table style="width: 50%;margin-right: 2px">
+			<tbody><tr>
+				<td style="font-weight: bold;font-size: 14px;padding: 0px;padding-left:5px;background: #efefef;">Aplicado por</td>
+			</tr>
+			<tr>
+				<td style="padding: 5px;height: 71px">  Willer Paim Matayoshi </td>
+			</tr>
+		</tbody></table>
+		
+	 
+		<table style="width: 50%;margin-left:2px; ">
+			<tbody><tr>
+				<td style="font-weight: bold;font-size: 14px;padding: 0px;padding-left:5px;background: #efefef; ">Unidade</td>
+			</tr>
+			<tr>
+				<td style="padding: 5px;height: 71px;max-width: 50px !important">
+					<div>
+						<div style="font-size: 12px;font-weight: bold;">ABILITY TECNOLOGIA E SERVICOS S/A </div>
+						<div style="font-size: 12px">ABILITY TECNOLOGIA E SERVICOS S/A </div>
+						<div style="font-size: 12px">06.127.582/0001-58</div>
+					</div>
+				</td>
+			</tr>
+		</tbody></table>
+		
+	</div><div style="margin: 10px 50px 0 50px;justify-content: space-between;display: flex;flex: 1">
+		<table style="width: 100%;margin-left:2px; ">
+			<tbody><tr>
+				<td style="font-weight: bold;font-size: 14px;padding: 0px;padding-left:5px;background: #efefef; ">Descrição</td>
+			</tr>
+			<tr>
+				<td style="padding: 5px;height: 71px;max-width: 50px !important">
+					<style>
+						#modelo-descricao p{
+							margin: 0;
+						}
+					</style>
+					<div id="modelo-descricao"><span style="font-size: 10pt;"><p>cxcxzcxzcxz</p><p>ddfsdfsd</p></span>
+					</div>
+				</td>
+			</tr>
+		</tbody></table></div>
+	
+	
+	<div style="display: flex;margin: 10px 48px 0 48px;">
+		<table style="width: 33%;margin-left:2px">
+			<tbody><tr>
+				<td style="padding: 5px;height: 55px">
+					<div style="display: flex;padding:7px">
+						<div class="fa fa-street-view" style="color:#1a73e9 !important;font-size: 48px;"></div>
+						<div style="margin-left: 15px">
+							<div>
+								<b>Início</b>
+							</div>
+							<div>
+								<span class="overview-box-name" style="font-size:12px;">08/01/2020 00:26:59</span>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody></table>
+		<table style="width: 33%;margin-left:2px">
+			<tbody><tr>
+				<td style="padding: 5px;height: 55px">
+					<div style="display: flex;padding:7px">
+						<div class="fa fa-flag-checkered" style="color:#1abc9c !important;font-size: 48px;"></div>
+						<div style="margin-left: 15px">
+							<div>
+								<b>Fim</b>
+							</div>
+							<div>
+								<span class="overview-box-name" style="font-size:12px;">05/11/2020 01:50:56</span>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody></table>
+		<table style="width: 33%;margin-left:2px">
+			<tbody><tr>
+				<td style="padding: 5px;height: 55px">
+					<div style="display: flex;padding:7px">
+						<div class="fa fa-clock-o" style="color:#805dca !important;font-size: 48px;"></div> 
+						<div style="margin-left: 15px">
+							<div>
+								<b>Duração</b>
+							</div>
+							<div>
+								<span class="overview-box-name" style="font-size:12px;">302dias 01 hora 23 minutos</span>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody></table>
+	</div><div id="j_idt45" class="ui-outputpanel ui-widget">
+		<div style="margin: 10px 50px 0 50px;background: #337ab7 !important;color: white;font-size:26px; border:1px solid silver;flex:1;display: flex;margin-top:50px;padding-left:15px">
+				Check-In
+		</div>	
+			
+	<div style="margin: 10px 50px 0 50px;">		
+		<div style="margin-top: 10px">
+			<div style="display: flex;">
+				<table style="width: 50%;margin-right: 2px">
+					<tbody><tr>
+						<td style="font-weight: bold;font-size: 14px;padding: 0px;padding-left:5px;background: #efefef">Data</td>
+					</tr>
+					<tr>
+						<td style="padding: 5px;"> 23/12/2019 08:35:10 </td>
+					</tr>
+				</tbody></table>
+				
+			 
+				<table style="width: 50%;margin-left: 2px">
+						<tbody><tr>
+							<td style="font-weight: bold;font-size: 14px;padding: 0px;padding-left:5px;background: #efefef">Dispositivo</td>
+						</tr>
+						<tr>
+							<td style="padding: 5px;"> Linux  / Chrome 79.0.3945.79</td>
+						</tr>
+				</tbody></table>
+			</div>
+		</div>
+		
+		<div style="margin-top:10px;width: 100%">
+		</div>
+		
+	</div></div><div id="j_idt56" class="ui-outputpanel ui-widget">
+		<div style="margin: 10px 50px 0 50px;background: #337ab7 !important;color: white;font-size:26px; border:1px solid silver;margin-top:50px;padding-left: 15px">
+			Check-Out
+		</div>	
+	
+	
+		<div style="margin: 10px 50px 0 50px;">		
+			<div style="margin-top: 10px">
+				<div style="display: flex;">
+					<table style="width: 50%">
+						<tbody><tr>
+							<td style="font-weight: bold;font-size: 14px;padding: 0px;padding-left:5px;background: #efefef">Data</td>
+						</tr>
+						<tr>
+							<td style="padding: 5px;"> 05/11/2020 01:50:56 </td>
+						</tr>
+					</tbody></table>
+					
+				 
+						<table style="width: 50%">
+								<tbody><tr>
+									<td style="font-weight: bold;font-size: 14px;padding: 0px;padding-left:5px;background: #efefef">Dispositivo</td>
+								</tr>
+								<tr>
+									<td style="padding: 5px;"> Linux  / Chrome 79.0.3945.79</td>
+								</tr>
+						</tbody></table>
+				</div>
+			</div>
+			
+			
+		
+			<div style="margin-top:10px">
+			</div>
+			
+		</div></div>
+	
+	
+	
+	
+			
+	<div style="page-break-before: always;margin: 10px 50px 0 50px;background: #13c4ad !important;color: white;font-size:26px; border:1px solid silver;flex:1;display: flex;margin-top:20px;padding-left: 15px">
+		Avaliação
+	</div>			
+	 
+	<div class="ui-g-12 ui-md-12 ui-lg-12" style="margin: 10px 50px 0 50px;">
+		<style>
+			table{
+				width: 100%;
+			}
+			td{
+				padding:0px;
+			}
+		</style>
+			
+			<div class="page-break-before: always;" style="justify-content: space-between; display: flex; align-items: center;margin-top:20px; background: #00233f;color: white;padding-top: 10px;padding-bottom: 10px;padding-right: 5px">
+				<div style="font-size: 16px;max-width: 550px;" class="text-ellipsis"> 
+					<b style="padding-left: 10px">Sessão : </b> 
+					<span>
+							1.Estantes
+					</span>
+				</div>
+
+				<div style="text-align: left; display: flex; font-size: 16px">30
+					/ 110 - 27.27 %
+
+				</div>
+			</div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>1.1 - </b><span style="white-space: normal;word-wrap: break-word">As estantes estão limpas ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									30 / 30
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:0:j_idt72:0:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:0:j_idt72:0:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#34b54e">
+			<div style="text-align: center;">
+				<div class="fa fa-check-circle fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Sim
+			</div></div></div></div>
+						</div>
+					</div><div style="/*page-break-before: avoid;page-break-inside: auto;*/padding-top: 5mm;border-top: 1px solid silver;min-height: 50px;text-align: center;" class="questao-anexo-imagem-list questao-anexo-imagem-list-medium">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/Slide170.PNG" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/Slide172.PNG" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_144313278885097.jpg" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_1443271169871392.jpg" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_1443401444738403.jpg" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_1443501415850239.jpg" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_144430187952734.jpg" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_144449661146376.jpg" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_1645121480210796.jpg" class="questao-anexo-imagem-wrapper"></div></div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>1.2 - </b><span style="white-space: normal;word-wrap: break-word">As estantes estão com estão com o estoque bem arrumado ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									0 / 80
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:0:j_idt72:1:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:0:j_idt72:1:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#d12727">
+			<div style="text-align: center;">
+				<div class="fa fa-times-circle fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Não
+			</div></div></div></div>
+						</div>
+					</div><div style="/*page-break-before: avoid;page-break-inside: auto;*/padding-top: 5mm;border-top: 1px solid silver;min-height: 50px;text-align: center;" class="questao-anexo-imagem-list questao-anexo-imagem-list-medium">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4331/image-_20200214_1533211108162581.jpg" class="questao-anexo-imagem-wrapper"></div></div>
+			
+			<div class="page-break-before: always;" style="justify-content: space-between; display: flex; align-items: center;margin-top:20px; background: #00233f;color: white;padding-top: 10px;padding-bottom: 10px;padding-right: 5px">
+				<div style="font-size: 16px;max-width: 550px;" class="text-ellipsis"> 
+					<b style="padding-left: 10px">Sessão : </b> 
+					<span>
+							2.Colaboradores
+					</span>
+				</div>
+
+				<div style="text-align: left; display: flex; font-size: 16px">280
+					/ 290 - 96.55 %
+
+				</div>
+			</div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>2.1 - </b><span style="white-space: normal;word-wrap: break-word">Todos os colabores estão uniformizados ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									100 / 100
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:1:j_idt72:0:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:1:j_idt72:0:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#34b54e">
+			<div style="text-align: center;">
+				<div class="fa fa-check-circle fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Sim
+			</div></div></div></div>
+						</div>
+					</div><div style="/*page-break-before: avoid;page-break-inside: auto;*/padding-top: 5mm;border-top: 1px solid silver;min-height: 50px;text-align: center;" class="questao-anexo-imagem-list questao-anexo-imagem-list-medium">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4332/image-_20200110_133317-1402696697.jpg" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4332/Screenshot_2020-01-10-11-05-44.png" class="questao-anexo-imagem-wrapper"></div></div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>2.2 - </b><span style="white-space: normal;word-wrap: break-word">Como está a exposição dos produtos? </span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									40 / 50
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:1:j_idt72:1:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:1:j_idt72:1:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#1f3ea6">
+			<div style="text-align: center;">
+				<div class="fa fa-smile-o fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Bom
+			</div></div></div></div>
+						</div>
+					</div><div style="/*page-break-before: avoid;page-break-inside: auto;*/padding-top: 5mm;border-top: 1px solid silver;min-height: 50px;text-align: center;" class="questao-anexo-imagem-list questao-anexo-imagem-list-medium">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4333/image-_20200214_123056284075474.jpg" class="questao-anexo-imagem-wrapper"></div></div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>2.3 - </b><span style="white-space: normal;word-wrap: break-word">Você foi bem recepcionado pelos atendentes ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									100 / 100
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:1:j_idt72:2:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:1:j_idt72:2:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#34b54e">
+			<div style="text-align: center;">
+				<div class="fa fa-check-circle fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Sim
+			</div></div></div></div>
+						</div>
+					</div></div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>2.4 - </b><span style="white-space: normal;word-wrap: break-word">Os colaboradores estão utilizando chachas de identificação ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									40 / 40
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:1:j_idt72:3:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:1:j_idt72:3:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#34b54e">
+			<div style="text-align: center;">
+				<div class="fa fa-check-circle fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Sim
+			</div></div></div></div>
+						</div>
+					</div></div>
+			
+			<div class="page-break-before: always;" style="justify-content: space-between; display: flex; align-items: center;margin-top:20px; background: #00233f;color: white;padding-top: 10px;padding-bottom: 10px;padding-right: 5px">
+				<div style="font-size: 16px;max-width: 550px;" class="text-ellipsis"> 
+					<b style="padding-left: 10px">Sessão : </b> 
+					<span>
+							3.Ambiente
+					</span>
+				</div>
+
+				<div style="text-align: left; display: flex; font-size: 16px">210
+					/ 230 - 91.30 %
+
+				</div>
+			</div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>3.1 - </b><span style="white-space: normal;word-wrap: break-word">O ambiente está bem iluminado ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									30 / 30
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:2:j_idt72:0:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:2:j_idt72:0:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#34b54e">
+			<div style="text-align: center;">
+				<div class="fa fa-check-circle fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Sim
+			</div></div></div></div>
+						</div>
+					</div><div style="/*page-break-before: avoid;page-break-inside: auto;*/padding-top: 5mm;border-top: 1px solid silver;min-height: 50px;text-align: center;" class="questao-anexo-imagem-list questao-anexo-imagem-list-medium">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4336/image-_20200110_003358-1402696697.jpg" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4336/Screenshot_2020-01-10-11-05-44.png" class="questao-anexo-imagem-wrapper">
+							
+								<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4336/BDEFA352-B4B9-4DAB-A10F-15033A992B1B.jpeg" class="questao-anexo-imagem-wrapper"></div></div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>3.2 - </b><span style="white-space: normal;word-wrap: break-word">O qual agradável está o som ambiente ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									30 / 50
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:2:j_idt72:1:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:2:j_idt72:1:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#e1ef1c">
+			<div style="text-align: center;">
+				<div class="fa fa-meh-o fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Regular
+			</div></div></div></div>
+						</div>
+					</div></div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>3.3 - </b><span style="white-space: normal;word-wrap: break-word">A limpeza em geral está nos conformes ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									60 / 60
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:2:j_idt72:2:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:2:j_idt72:2:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#34b54e">
+			<div style="text-align: center;">
+				<div class="fa fa-thumbs-up fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Conforme
+			</div></div></div></div>
+						</div>
+					</div></div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>3.4 - </b><span style="white-space: normal;word-wrap: break-word">O alvará da vigilancia sanitária está bem á vista ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									90 / 90
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:2:j_idt72:3:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:2:j_idt72:3:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#34b54e">
+			<div style="text-align: center;">
+				<div class="fa fa-check-circle fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Sim
+			</div></div></div></div>
+						</div>
+					</div></div>
+			
+			<div class="page-break-before: always;" style="justify-content: space-between; display: flex; align-items: center;margin-top:20px; background: #00233f;color: white;padding-top: 10px;padding-bottom: 10px;padding-right: 5px">
+				<div style="font-size: 16px;max-width: 550px;" class="text-ellipsis"> 
+					<b style="padding-left: 10px">Sessão : </b> 
+					<span>
+							4.Fachada
+					</span>
+				</div>
+
+				<div style="text-align: left; display: flex; font-size: 16px">16
+					/ 30 - 53.33 %
+
+				</div>
+			</div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>4.1 - </b><span style="white-space: normal;word-wrap: break-word">A fachada está bonita</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									6 / 10
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:3:j_idt72:0:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:3:j_idt72:0:j_idt86:j_idt105" class="ui-outputpanel ui-widget" style="display:flex; justify-content: center;font-size:14px">
+			
+			
+			<div class="fa fa-star"></div>
+			<div class="fa fa-star"></div>
+			<div class="fa fa-star"></div>
+			<div class="fa fa-star-o"></div>
+			<div class="fa fa-star-o"></div></div></div></div>
+						</div>
+					</div></div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>4.2 - </b><span style="white-space: normal;word-wrap: break-word">A cor está viva</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									0 / 10
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:3:j_idt72:1:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:3:j_idt72:1:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#d12727">
+			<div style="text-align: center;">
+				<div class="fa fa-thumbs-down fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Não conforme
+			</div></div></div></div>
+						</div>
+					</div></div><div style="border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver;">
+					<div>
+						<div style="display: flex;align-items: stretch;         ">
+								
+							<div style="width: 550px;margin-left: 10px;padding: 1mm 0;">
+								<div>
+									<b>4.3 - </b><span style="white-space: normal;word-wrap: break-word">está chamativa</span>
+								</div>
+								
+							</div>
+							
+							<div style="margin-left:auto;"></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;padding: 0 5px;text-align: center;display: flex;flex-flow: column;justify-content: center;">
+								
+								<div style="font-size: 12pt;">
+									10 / 10
+								</div>
+								<div style="font-size: 11pt;">
+									Pontos
+								</div></div><div style="min-width: 30mm;width: 30mm;border-left: 1px silver solid;margin-top:3px;margin-bottom: 3px;min-height: 50px;display: flex;align-items: center;justify-content: center;padding: 0 5px;"><div id="j_idt68:3:j_idt72:2:j_idt85" class="ui-outputpanel ui-widget" style="font-size: 16px;    text-align: center; "><div id="j_idt68:3:j_idt72:2:j_idt86:j_idt107" class="ui-outputpanel ui-widget" style="color:#34b54e">
+			<div style="text-align: center;">
+				<div class="fa fa-thumbs-up fa-2x"></div>
+			</div>
+			<div style="font-size: 12px;text-align: center;">Conforme
+			</div></div></div></div>
+						</div>
+					</div></div>
+		
+	</div><div style="display:none;page-break-before: always;margin: 10px 50px 0 50px;background: #13c4ad !important;color: white;font-size:26px; border:1px solid silver;margin-top:20px;padding-left: 15px" class="end-anexo-imagem-list">
+		Imagens
+	</div>			
+	 
+	<div class="end-anexo-imagem-list" style="display:none;margin: 10px 50px 0 50px;"><table class="sessao-table" style="width:100%">
+<tbody>
+<tr>
+<td>
+				
+				<div style="justify-content: space-between; display: flex; align-items: center;margin-top:20px; background: #00233f;color: white;padding-top: 10px;padding-bottom: 10px;padding-right: 5px">
+					<div style="font-size: 16px;max-width: 550px;" class="text-ellipsis"> 
+						<b style="padding-left: 10px">Sessão : </b> 
+						<span>
+								1.Estantes
+						</span>
+					</div>
+
+					
+				</div><table>
+<tbody>
+<tr>
+<td class="column-pergunta">
+						<div style="">
+						
+							<div style="width: 760px;padding: 10px 0 10px 10px;">
+								<div>
+									<b>1.1. </b><span style="white-space: normal;word-wrap: break-word">As estantes estão limpas ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="min-height: 50px;padding: 0 5px;text-align: center;">
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/Slide170.PNG" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/Slide172.PNG" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_144313278885097.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_1443271169871392.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_1443401444738403.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_1443501415850239.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_144430187952734.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_144449661146376.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4330/image-_20201007_1645121480210796.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+							</div>
+						</div></td>
+</tr>
+<tr>
+<td class="column-pergunta">
+						<div style="">
+						
+							<div style="width: 760px;padding: 10px 0 10px 10px;">
+								<div>
+									<b>1.2. </b><span style="white-space: normal;word-wrap: break-word">As estantes estão com estão com o estoque bem arrumado ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="min-height: 50px;padding: 0 5px;text-align: center;">
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4331/image-_20200214_1533211108162581.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+							</div>
+						</div></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+				
+				<div style="justify-content: space-between; display: flex; align-items: center;margin-top:20px; background: #00233f;color: white;padding-top: 10px;padding-bottom: 10px;padding-right: 5px">
+					<div style="font-size: 16px;max-width: 550px;" class="text-ellipsis"> 
+						<b style="padding-left: 10px">Sessão : </b> 
+						<span>
+								2.Colaboradores
+						</span>
+					</div>
+
+					
+				</div><table>
+<tbody>
+<tr>
+<td class="column-pergunta">
+						<div style="">
+						
+							<div style="width: 760px;padding: 10px 0 10px 10px;">
+								<div>
+									<b>2.1. </b><span style="white-space: normal;word-wrap: break-word">Todos os colabores estão uniformizados ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="min-height: 50px;padding: 0 5px;text-align: center;">
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4332/image-_20200110_133317-1402696697.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4332/Screenshot_2020-01-10-11-05-44.png" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+							</div>
+						</div></td>
+</tr>
+<tr>
+<td class="column-pergunta">
+						<div style="">
+						
+							<div style="width: 760px;padding: 10px 0 10px 10px;">
+								<div>
+									<b>2.2. </b><span style="white-space: normal;word-wrap: break-word">Como está a exposição dos produtos? </span>
+								</div>
+								
+							</div>
+							
+							<div style="min-height: 50px;padding: 0 5px;text-align: center;">
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4333/image-_20200214_123056284075474.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+							</div>
+						</div></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+				
+				<div style="justify-content: space-between; display: flex; align-items: center;margin-top:20px; background: #00233f;color: white;padding-top: 10px;padding-bottom: 10px;padding-right: 5px">
+					<div style="font-size: 16px;max-width: 550px;" class="text-ellipsis"> 
+						<b style="padding-left: 10px">Sessão : </b> 
+						<span>
+								3.Ambiente
+						</span>
+					</div>
+
+					
+				</div><table>
+<tbody>
+<tr>
+<td class="column-pergunta">
+						<div style="">
+						
+							<div style="width: 760px;padding: 10px 0 10px 10px;">
+								<div>
+									<b>3.1. </b><span style="white-space: normal;word-wrap: break-word">O ambiente está bem iluminado ?</span>
+								</div>
+								
+							</div>
+							
+							<div style="min-height: 50px;padding: 0 5px;text-align: center;">
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4336/image-_20200110_003358-1402696697.jpg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4336/Screenshot_2020-01-10-11-05-44.png" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+									<div style="max-width: 100%;text-align: center;margin-bottom :10px;">
+										<img src="https://sults-bucket.s3.amazonaws.com/treinamento/ChecklistExecucaoEmpresaResposta/4336/BDEFA352-B4B9-4DAB-A10F-15033A992B1B.jpeg" style="height:100%;width: 100%;object-fit: contain;max-height: 130mm; max-width: 190mm;">
+									</div>
+							</div>
+						</div></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style="height: 150px"></div>
+	
+	</div>
+	</page>
+
+
+
+
+
+
+
+
+</body>
