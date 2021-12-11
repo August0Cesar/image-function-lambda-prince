@@ -1,57 +1,28 @@
+const { spawn } = require('child_process')
+
 module.exports = {
-  create: create
+	create: create
 }
 
-
-async function create( html ){
-	let buffer = null;
-	return buffer;
-}
-
-
-
-async function createPdf2( html ){
-
-
-
-	let opts = { timeout: 60 * 1000, maxbuffer: 1000 * 1024 * 1024, encoding: "buffer" };
-
-
-	/*
-	const p = new Promise((resolve) => {
-
-
-		let child = execFile(prince, ["-", "-o", "-"], opts, function (err, stdout, stderr) {
-			console.log(err);
-
-			let b64 = stdout.toString("base64");
-			resolve('foi');
-		});
-		child.stdin.write(html);
-	    child.stdin.end();
-
-
-
-	});
-	*/
+async function create(html) {
 
 	const p = new Promise((resolve) => {
 
-
-		let child = spawn(prince, ["-", "-o", "-"], opts, function (err, stdout, stderr) {
-			console.log(err);
-
-			let b64 = stdout.toString("base64");
-			resolve('foi');
-		});
+		// const child = spawn('prince', [path_file]);//funcionando
+		const child = spawn('prince', ["-", "-o", "out.pdf"]);
 		child.stdin.write(html);
-	    child.stdin.end();
+		child.stdin.end();
 
+		child.stderr.on('data', (data) => {//saida do programa no terminal
+			console.error(`stderr: ${data}`);
+		});
 
+		child.on('close', (code) => {
 
+			console.log(`child process exited with code ${code}`);
+			resolve("oi");
+		});
 	});
-
-
 	return p;
 }
 
